@@ -16,10 +16,12 @@ public class Store {
 
     public static void loadStoreWithProduct(ProductWithCount productWithCountToAdd) {
         for (ProductWithCount currentAvailableProduct: Store.currentAvailableProducts) {
-            if (currentAvailableProduct.getProduct().getId() == productWithCountToAdd.getProduct().getId()) {
-                currentAvailableProduct.increaseCount(productWithCountToAdd.getCount());
-                return;
+            if (currentAvailableProduct.getProduct().getId() != productWithCountToAdd.getProduct().getId()) {
+                continue;
             }
+
+            currentAvailableProduct.increaseCount(productWithCountToAdd.getCount());
+            return;
         }
 
         Store.currentAvailableProducts.add(productWithCountToAdd);
@@ -35,11 +37,23 @@ public class Store {
         }
     }
 
+    public static int getAvailableCountOfProduct(Product product) {
+        for (ProductWithCount availableProduct: Store.currentAvailableProducts) {
+            if (availableProduct.getProduct().getId() != product.getId()) {
+                continue;
+            }
+
+            return availableProduct.getCount();
+        }
+
+        return 0;
+    }
+
     public static Receipt buyProducts(CashDesk cashDesk, ProductWithCount[] products) throws Exception {
         // 1. Check products availability
         for (ProductWithCount productWithCount: products) {
             if (!Store.isProductAvailable(productWithCount)) {
-                throw new Exception("Product not available");
+                throw Store.getProductNotAvailableException(productWithCount);
             }
         }
 
@@ -71,5 +85,13 @@ public class Store {
         }
 
         return false;
+    }
+
+    private static Exception getProductNotAvailableException(ProductWithCount productWithCount) {
+        int requestedCount = productWithCount.getCount();
+        int availableCount = Store.getAvailableCountOfProduct(productWithCount.getProduct());
+        int difference = requestedCount - availableCount;
+
+        return new ProductNotAvailableException("Requested count of product " + productWithCount.getProduct().getName() + " is not available. There are not enough "+difference+".");
     }
 }

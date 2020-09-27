@@ -48,6 +48,8 @@ public class Main {
             });
 
             receipt.printReceiptFile();
+        } catch (ProductNotAvailableException e) {
+            System.out.println(e.getMessage());
         } catch (Exception e) {
 
         }

@@ -15,14 +15,9 @@ public class Receipt {
     private ProductWithCount[] products;
     private BigDecimal totalPrice;
 
-    // @TODO Необходимо е да се съхранява общата сума, която се генерира като оборот при издаването.
-    // @TODO При издаването на касовата бележка е необходимо нейното съдържание да се показва и да се запазва във файл.
-    // @TODO Всяка касова бележка трябва да се пази в отделен файл с име на файла, което да съдържа поредния номер на издадената касова бележка.
-    // @TODO Информацията във файла, в който се записва касовата бележка трябва да може да се прочете.
-
     public Receipt(Cashier cashier, ProductWithCount[] products) {
         if (products.length == 0) {
-            // @TODO Create exception
+            throw new IllegalArgumentException("Not passed any products in Receipt class constructor");
         }
 
         this.number = ++Store.receiptIssued;

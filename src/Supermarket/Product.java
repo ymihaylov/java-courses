@@ -12,12 +12,11 @@ public class Product {
 
     public Product(String name, double price, Date expiryDate) {
         this.id = UUID.randomUUID().toString();
-
         this.name = name;
+        this.expiryDate = expiryDate;
 
         this.price = new BigDecimal(Double.toString(price));
         this.price = this.price.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-        this.expiryDate = expiryDate;
     }
 
     public String getId() {

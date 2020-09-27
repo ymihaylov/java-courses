@@ -7,8 +7,8 @@ public class ProductWithCount {
     private int count;
 
     public ProductWithCount(Product product, int count) {
-        if (this.count < 1) {
-            // @TODO Throw an exception
+        if (this.count < 0) {
+            throw new IllegalArgumentException("Invalid argument count passed to ProductWithCount constructor.");
         }
 
         this.product = product;
