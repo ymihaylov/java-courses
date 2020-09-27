@@ -48,10 +48,19 @@ public class Main {
             });
 
             receipt.printReceiptFile();
+
+            Receipt receipt2 = Store.buyProducts(cashDesk2, new ProductWithCount[]{
+                    new ProductWithCount(waffleProduct, 2),
+                    new ProductWithCount(breadProduct, 1),
+                    new ProductWithCount(instantCoffeeProduct, 5),
+                    new ProductWithCount(milkProduct, 1),
+            });
+
+            receipt2.printReceiptFile();
         } catch (ProductNotAvailableException e) {
             System.out.println(e.getMessage());
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
     }
 }

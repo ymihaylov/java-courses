@@ -15,8 +15,17 @@ public class CashDesk {
         this.currentCashier = cashier;
     }
 
-    public Receipt payForProducts(ProductWithCount[] products) {
+    public synchronized Receipt payForProducts(ProductWithCount[] products) {
+        // 2. Issue Receipt
         Receipt receipt = new Receipt(this.currentCashier, products);
+
+        // 3. Update availability
+        for (ProductWithCount productWithCount : products) {
+            Store.decreaseAvailabilityOfProduct(productWithCount);
+        }
+
+        // 4. Add store turnover
+        Store.turnover = Store.turnover.add(receipt.getTotalPrice());
 
         return receipt;
     }

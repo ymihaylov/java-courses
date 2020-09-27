@@ -17,7 +17,7 @@ public class Receipt {
 
     public Receipt(Cashier cashier, ProductWithCount[] products) {
         if (products.length == 0) {
-            throw new IllegalArgumentException("Not passed any products in Receipt class constructor");
+            throw new IllegalArgumentException("Not passed any products in Receipt class constructor.");
         }
 
         this.number = ++Store.receiptIssued;

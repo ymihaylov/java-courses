@@ -3,6 +3,7 @@ package Supermarket;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.*;
 
 public class Store {
     public static List<ProductWithCount> currentAvailableProducts = new ArrayList<ProductWithCount>();
@@ -27,7 +28,7 @@ public class Store {
         Store.currentAvailableProducts.add(productWithCountToAdd);
     }
 
-    private static void decreaseAvailabilityOfProduct(ProductWithCount productWithCount) {
+    public static void decreaseAvailabilityOfProduct(ProductWithCount productWithCount) {
         for (ProductWithCount availableProduct: Store.currentAvailableProducts) {
             if (availableProduct.getProduct().getId() != productWithCount.getProduct().getId()) {
                 continue;
@@ -57,18 +58,11 @@ public class Store {
             }
         }
 
-        // 2. Issue Receipt
-        Receipt receiptIssued = cashDesk.payForProducts(products);
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        PayProductsTask task = new PayProductsTask(cashDesk, products);
+        Future<Receipt> receiptIssued = executorService.submit(task);
 
-        // 3. Update availability
-        for (ProductWithCount productWithCount : products) {
-            Store.decreaseAvailabilityOfProduct(productWithCount);
-        }
-
-        // 4. Add store turnover
-        Store.turnover = Store.turnover.add(receiptIssued.getTotalPrice());
-
-        return receiptIssued;
+        return receiptIssued.get();
     }
 
     private static boolean isProductAvailable(ProductWithCount productWithCount) {
