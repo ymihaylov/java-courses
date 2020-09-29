@@ -1,0 +1,24 @@
+Inventory number: 12345
+Manufacturer: SoftPress
+Price: 13.9
+----------
+Inventory number: 12345
+Manufacturer: SoftPress
+Price: 13.9
+----------
+Inventory number: 12345
+Manufacturer: SoftPress
+Price: 13.9
+----------
+Inventory number: 12345
+Manufacturer: SoftPress
+Price: 13.9
+----------
+Inventory number: 12345
+Manufacturer: SoftPress
+Price: 13.9
+----------
+Inventory number: 12345
+Manufacturer: SoftPress
+Price: 13.9
+----------

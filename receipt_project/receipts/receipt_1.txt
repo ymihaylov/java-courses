@@ -1,0 +1,12 @@
+Number: 1
+Cashier: Ivan Ivanov
+Date issued: Mon Sep 28 11:25:53 GMT+02:00 2020
+
+Products:
+Product Name | Product Price | Product Count | Total Product Price
+Waffle Borovets | 0.50 | 2 | 1.00
+Bread | 1.20 | 1 | 1.20
+Instant Coffee | 0.40 | 5 | 2.00
+Milk | 2.20 | 1 | 2.20
+
+Total: 6.40 
