@@ -33,7 +33,7 @@ public class Book implements Comparable<Book> {
     }
 
     @Override
-    public int compareTo(Book employee) {
-        return this.name.compareTo(employee.name);
+    public int compareTo(Book book) {
+        return this.name.compareTo(book.name);
     }
 }
