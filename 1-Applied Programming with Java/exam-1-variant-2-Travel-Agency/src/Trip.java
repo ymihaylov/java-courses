@@ -41,7 +41,7 @@ public class Trip implements Comparable<Trip> {
 
     // 1.3.
     public void printCustomersByOrderOfAdding() {
-        // It is LinkedHashSet - It keeps order of adding by default
+        // It is a LinkedHashSet - It keeps order of adding by default
         this.customers.forEach(customer -> System.out.println(customer));
     }
 
