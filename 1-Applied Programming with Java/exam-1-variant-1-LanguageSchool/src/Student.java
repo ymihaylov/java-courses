@@ -25,13 +25,7 @@ public class Student implements Comparable<Student> {
                 '}';
     }
 
-    public static Comparator<Student> StudentName = new Comparator<Student>() {
-        @Override
-        public int compare(Student student1, Student student2) {
-
-            return student1.name.compareTo(student2.name);
-        }
-    };
+    public static Comparator<Student> StudentName = (student1, student2) -> student1.name.compareTo(student2.name);
 
     @Override
     public int compareTo(Student student) {

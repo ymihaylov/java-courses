@@ -8,20 +8,14 @@ public class Course implements Comparable<Course> {
     private Level level;
     private int maxNumberOfStudents;
 
-    private Teacher teacher;
-
     private Set<Student> students;
 
-    public Course(Language language, Level level, int maxNumberOfStudents, Teacher teacher) {
+    public Course(Language language, Level level, int maxNumberOfStudents) {
         this.language = language;
         this.level = level;
         this.maxNumberOfStudents = maxNumberOfStudents;
 
         this.students = new LinkedHashSet<>();
-
-        try {
-            this.setTeacher(teacher);
-        } catch (Exception e) {}
     }
 
     public Language getLanguage() {
@@ -32,18 +26,7 @@ public class Course implements Comparable<Course> {
         return level;
     }
 
-    public int getMaxNumberOfStudents() {
-        return maxNumberOfStudents;
-    }
-
-    public void setTeacher(Teacher teacher) throws SetTeacherWithDifferentLanguageException {
-        if (teacher.getLanguage() != this.getLanguage()) {
-            throw new SetTeacherWithDifferentLanguageException();
-        }
-
-        this.teacher = teacher;
-    }
-
+    // 1.1
     public void addStudent(Student student) throws CourseLimitReachedExceeded {
         if (this.students.size() >= this.maxNumberOfStudents) {
             throw new CourseLimitReachedExceeded();
@@ -53,20 +36,18 @@ public class Course implements Comparable<Course> {
         this.students.add(student);
     }
 
-    public void printStudentsByOrderOfAdding() {
-        // It is LinkedHashSet - It keeps order of adding by default
-        this.students.forEach(student -> System.out.println(student));
-    }
-
-    public void printStudentsOrderByName() {
+    // 1.2
+    public void printStudentsOrderedByName() {
         List<Student> sortedList = new ArrayList<>(this.students);
         Collections.sort(sortedList, Student.StudentName);
 
         sortedList.forEach(student -> System.out.println(student));
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    // 1.3
+    public void printStudentsByOrderOfAdding() {
+        // It is LinkedHashSet - It keeps order of adding by default
+        this.students.forEach(student -> System.out.println(student));
     }
 
     @Override
