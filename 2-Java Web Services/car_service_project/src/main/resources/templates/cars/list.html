@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+
+<div class="col-10 text-center">
+    <h3 th:unless="${cars} and ${cars.size()}">There are no cars!</h3>
+
+    <table th:if="${cars.size()>0}" class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Registration Number</th>
+                <th>Year</th>
+                <th colspan="4">Actions</th>
+            </tr>
+        </thead>
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.id}"></td>
+            <td th:text="${car.carManufacturer.name}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.registrationNumber}"></td>
+            <td th:text="${car.year}"></td>
+
+            <td><a class="btn btn-link" th:href="@{'/cars/schedule-appointment/'+${car.id}}">Show History Services</a></td>
+            <td><a class="btn btn-info" th:href="@{'/cars/schedule-appointment/'+${car.id}}">Schedule Service Appointment</a></td>
+            <td><a class="btn btn-info" th:href="@{'/cars/edit-car/'+${car.id}}">Edit</a></td>
+            <td><a class="btn btn-info" th:href="@{'/cars/delete-car/'+${car.id}}">Delete</a></td>
+        </tr>
+    </table>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

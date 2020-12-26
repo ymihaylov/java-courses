@@ -15,13 +15,8 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "car_makes")
-public class CarMake extends BaseEntity {
-    @NotBlank
+@Table(name = "car_manufacturers")
+public class CarManufacturer extends BaseEntity {
     @Size(max = 20, message="Max 20")
     private String name;
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

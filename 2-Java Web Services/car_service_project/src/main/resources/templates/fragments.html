@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:fragment="head">
+    <title>Car Service System</title>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+
+<header th:fragment="header">
+    <div class="row m-1">
+        <div class="col-9">
+            <h2>Car Service System</h2>
+        </div>
+
+        <div class="col-3" sec:authorize="isAuthenticated()">
+            Hello, <span sec:authentication="name"></span>
+            <a class="btn" th:href="@{/logout}">Logout</a>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" th:fragment="navigation">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/cars">My Cars</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/cars/create-car">Add Car</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<footer page-footer font-small>
+    <div class="footer-copyright text-center py-3">© <span th:text="${#dates.year(#dates.createNow())}"></span> Copyright:
+        <a href="#">Car Service System</a>
+    </div>
+</footer>
+</html>
