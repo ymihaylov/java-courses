@@ -1,7 +1,6 @@
 package com.example.car_service.config;
 
 import com.example.car_service.services.UserService;
-import com.example.car_service.services.interfaces.UserServiceInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class  SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserServiceInterface userService;
+    private final UserService userService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {

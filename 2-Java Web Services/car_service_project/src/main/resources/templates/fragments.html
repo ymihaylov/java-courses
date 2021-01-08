@@ -6,6 +6,8 @@
     <title>Car Service System</title>
     <meta charset="UTF-8">
     <link href="/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script src="/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script src="/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
 </head>
 
 <header th:fragment="header">
@@ -27,7 +29,11 @@
                     <a class="nav-link active" href="/cars">My Cars</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/cars/create-car">Add Car</a>
+                    <a class="nav-link active" href="/cars/create">Add Car</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="/appointments/create">Book An Appointment</a>
                 </li>
             </ul>
         </div>

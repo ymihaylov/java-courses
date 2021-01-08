@@ -7,8 +7,8 @@ import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -22,12 +22,15 @@ import java.util.Set;
 @Table(name = "appointments")
 public class Appointment extends BaseEntity {
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past(message="The date has to be in the past!")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @Future(message="The date has to be in the future!")
     private LocalDate date;
 
     @Column
     private BigDecimal price;
+
+    @Enumerated
+    private AppointmentStatus status;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -39,7 +42,7 @@ public class Appointment extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "car_service_company_id")
-    private CarServiceCompany carServiceCompany;
+    private RepairShop repairShop;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(

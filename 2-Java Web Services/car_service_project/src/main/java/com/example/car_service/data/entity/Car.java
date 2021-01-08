@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "cars")
 public class Car extends BaseEntity {
     private String model;
-    private String registrationNumber;
+    private String registration;
     private int year;
 
     @ManyToOne

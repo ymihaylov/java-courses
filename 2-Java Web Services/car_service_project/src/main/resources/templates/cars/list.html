@@ -22,13 +22,13 @@
             <td th:text="${car.id}"></td>
             <td th:text="${car.carManufacturer.name}"></td>
             <td th:text="${car.model}"></td>
-            <td th:text="${car.registrationNumber}"></td>
+            <td th:text="${car.registration}"></td>
             <td th:text="${car.year}"></td>
 
             <td><a class="btn btn-link" th:href="@{'/cars/schedule-appointment/'+${car.id}}">Show History Services</a></td>
             <td><a class="btn btn-info" th:href="@{'/cars/schedule-appointment/'+${car.id}}">Schedule Service Appointment</a></td>
-            <td><a class="btn btn-info" th:href="@{'/cars/edit-car/'+${car.id}}">Edit</a></td>
-            <td><a class="btn btn-info" th:href="@{'/cars/delete-car/'+${car.id}}">Delete</a></td>
+            <td><a class="btn btn-info" th:href="@{'/cars/edit/'+${car.id}}">Edit</a></td>
+            <td><a class="btn btn-info" th:href="@{'/cars/delete/'+${car.id}}">Delete</a></td>
         </tr>
     </table>
 </div>

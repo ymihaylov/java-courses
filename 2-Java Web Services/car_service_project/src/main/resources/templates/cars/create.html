@@ -5,7 +5,7 @@
 <body>
 <header th:replace="fragments :: header"></header>
 
-<h4>Edit Car</h4>
+<h4>Create Car Entry</h4>
 
 <div class="col-6">
     <form action="#" th:action="@{/cars/create}" th:object="${car}" method="post">
@@ -26,8 +26,8 @@
 
             <div class="form-group">
                 <label for="registration-number">Registration Number</label>
-                <input class="form-control" type="text" th:field="*{registrationNumber}" placeholder="Registration Number" id="registration-number">
-                <span class="text-danger" th:if="${#fields.hasErrors('registrationNumber')}" th:errors="*{registrationNumber}">Registration Number Error<Error></Error></span>
+                <input class="form-control" type="text" th:field="*{registration}" placeholder="Registration Number" id="registration-number">
+                <span class="text-danger" th:if="${#fields.hasErrors('registration')}" th:errors="*{registration}">Registration Number Error<Error></Error></span>
             </div>
 
             <div class="form-group">
@@ -35,21 +35,6 @@
                 <input class="form-control" type="text" th:field="*{year}" placeholder="Year" id="year">
                 <span class="text-danger" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year Error<Error></Error></span>
             </div>
-
-
-            <!--            <div class="form-group">-->
-            <!--                <label for="maxNumberOfStudents">Max Number of Students</label>-->
-            <!--                <input class="form-control" type="text" th:field="*{maxNumberOfStudents}"-->
-            <!--                       placeholder="Max number of students" id="maxNumberOfStudents">-->
-            <!--                <span class="text-danger" th:if="${#fields.hasErrors('maxNumberOfStudents')}"-->
-            <!--                      th:errors="*{maxNumberOfStudents}">Max Number of Students Error</span>-->
-            <!--            </div>-->
-            <!--            <div class="form-group">-->
-            <!--                <label for="foundationDate">Foundation Date</label>-->
-            <!--                <input class="form-control" type="date" th:field="*{foundationDate}" id="foundationDate">-->
-            <!--                <span class="text-danger" th:if="${#fields.hasErrors('foundationDate')}"-->
-            <!--                      th:errors="*{foundationDate}">Foundation Date Error</span>-->
-            <!--            </div>-->
         </div>
         <button type="submit" class="btn btn-primary">Save Car</button>
     </form>

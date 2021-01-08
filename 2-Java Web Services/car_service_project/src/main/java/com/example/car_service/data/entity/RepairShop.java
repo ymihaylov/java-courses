@@ -16,16 +16,14 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "car_service_companies")
-public class CarServiceCompany extends BaseEntity {
-    @NotBlank
-    @Size(min = 5, max = 20, message="Min 5, Max 20")
+@Table(name = "repair_shops")
+public class RepairShop extends BaseEntity {
     private String name;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-        name = "car_service_company_to_manufacturers",
-        joinColumns = { @JoinColumn(name = "car_service_company_id") },
+        name = "repair_shops_manufacturers",
+        joinColumns = { @JoinColumn(name = "repair_shop_id") },
         inverseJoinColumns = { @JoinColumn(name = "car_manufacturer_id") }
     )
     Set<CarManufacturer> supportedManufacturers = new HashSet<>();
