@@ -2,6 +2,7 @@ import java.math.BigDecimal;
 import java.util.concurrent.*;
 
 public class Main {
+    // Task 2
     public static void main(String[] args) {
         ExecutorService executorServiceFixedPool = Executors.newFixedThreadPool(2);
 
