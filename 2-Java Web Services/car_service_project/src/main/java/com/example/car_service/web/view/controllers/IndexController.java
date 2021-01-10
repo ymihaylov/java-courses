@@ -19,7 +19,7 @@ public class IndexController {
 //            return "redirect:/login";
 //        }
 
-        User principal = (User) authentication.getPrincipal();
+//        User principal = (User) authentication.getPrincipal();
 
         return "/hello-secured";
     }
