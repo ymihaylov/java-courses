@@ -1,7 +1,9 @@
 package com.example.car_service.services;
 
 import com.example.car_service.data.entity.Car;
+import com.example.car_service.data.entity.User;
 import com.example.car_service.data.repository.CarRepository;
+import com.example.car_service.data.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,10 @@ public class CarService {
         return carRepository
             .findById(id)
             .orElseThrow(() -> new RuntimeException("Invalid school Id: " + id));
+    }
+
+    public List<Car> getCarsByUser(User user) {
+        return carRepository.findAllByUserId(user.getId());
     }
 
     public List<Car> getCars() {

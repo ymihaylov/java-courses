@@ -1,6 +1,5 @@
 package com.example.car_service.web.view.controllers;
 
-import com.example.car_service.data.entity.Appointment;
 import com.example.car_service.data.entity.Car;
 
 import com.example.car_service.services.CarManufacturerService;

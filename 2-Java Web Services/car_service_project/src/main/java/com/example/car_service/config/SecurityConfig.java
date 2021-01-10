@@ -48,12 +48,12 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
                 /**
                  * Client Requests
                  */
-                .antMatchers("/cars").hasAuthority("CLIENT")
+                .antMatchers("/my-cars").hasAuthority("CLIENT")
 
                 /**
                  * Service Employee Requests
                  */
-                .antMatchers("/car-shop-appointments").hasAuthority("EMPLOYEE")
+                .antMatchers("/pending-appointments").hasAuthority("CAR_SHOP_EMPLOYEE")
 
                 .and()
 

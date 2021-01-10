@@ -35,6 +35,9 @@ public class User extends BaseEntity implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> authorities;
 
+    @Column(name = "full_name")
+    private String fullName;
+
 //    @OneToMany
 //    private Set<Car> cars;
 }

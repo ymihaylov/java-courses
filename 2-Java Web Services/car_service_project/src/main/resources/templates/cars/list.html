@@ -4,10 +4,16 @@
 <body>
 <header th:replace="fragments :: header"></header>
 
-<div class="col-10 text-center">
-    <h3 th:unless="${cars} and ${cars.size()}">There are no cars!</h3>
+<div class="container mt-3">
+    <h3>My Cars</h3>
+</div>
 
-    <table th:if="${cars.size()>0}" class="table table-hover">
+<div class="container mt-4">
+    <a href="#" class="btn btn-success">Add Car</a>
+
+    <p th:unless="${cars} and ${cars.size()}" class="mt-2">There are no added cars!</p>
+
+    <table th:if="${cars.size()>0}" class="table table-hover mt-3">
         <thead>
             <tr>
                 <th>ID</th>
@@ -18,6 +24,7 @@
                 <th colspan="4">Actions</th>
             </tr>
         </thead>
+
         <tr th:each="car : ${cars}">
             <td th:text="${car.id}"></td>
             <td th:text="${car.carManufacturer.name}"></td>
@@ -25,13 +32,14 @@
             <td th:text="${car.registration}"></td>
             <td th:text="${car.year}"></td>
 
-            <td><a class="btn btn-link" th:href="@{'/cars/schedule-appointment/'+${car.id}}">Show History Services</a></td>
             <td><a class="btn btn-info" th:href="@{'/cars/schedule-appointment/'+${car.id}}">Schedule Service Appointment</a></td>
-            <td><a class="btn btn-info" th:href="@{'/cars/edit/'+${car.id}}">Edit</a></td>
-            <td><a class="btn btn-info" th:href="@{'/cars/delete/'+${car.id}}">Delete</a></td>
+            <td><a class="btn btn-outline-warning" th:href="@{'/cars/edit/'+${car.id}}">Edit</a></td>
+            <td><a class="btn btn-outline-danger" th:href="@{'/cars/delete/'+${car.id}}">Delete</a></td>
+            <td><a class="btn btn-link" th:href="@{'/cars/schedule-appointment/'+${car.id}}">Show History</a></td>
         </tr>
     </table>
 </div>
+
 <footer th:replace="fragments :: footer"></footer>
 </body>
 </html>
