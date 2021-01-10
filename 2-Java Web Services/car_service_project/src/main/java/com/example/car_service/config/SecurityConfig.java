@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @AllArgsConstructor
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class  SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
@@ -35,26 +34,36 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
+                .csrf().disable()
 
-            .authorizeRequests()
-            .antMatchers("/secured").hasAnyAuthority("ADMIN", "TEACHER")
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/", true)
+                .permitAll()
 
-            .and()
+                .and()
 
-            .formLogin()
-            .loginPage("/login")
-            .permitAll()
+                .authorizeRequests()
 
-            .and()
+                /**
+                 * Client Requests
+                 */
+                .antMatchers("/cars").hasAuthority("CLIENT")
 
-            .exceptionHandling().accessDeniedPage("/unauthorized")
+                /**
+                 * Service Employee Requests
+                 */
+                .antMatchers("/car-shop-appointments").hasAuthority("EMPLOYEE")
 
-            .and()
+                .and()
 
-            .logout()
-            .permitAll()
-            .logoutSuccessUrl("/login")
-            .permitAll();
+                .exceptionHandling().accessDeniedPage("/unauthorized")
+
+                .and()
+
+                .logout()
+                .permitAll()
+                .logoutSuccessUrl("/login")
+                .permitAll();
     }
 }

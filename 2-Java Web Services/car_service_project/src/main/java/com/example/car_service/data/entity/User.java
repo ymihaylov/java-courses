@@ -35,6 +35,6 @@ public class User extends BaseEntity implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> authorities;
 
-    @OneToMany
-    private Set<Car> cars;
+//    @OneToMany
+//    private Set<Car> cars;
 }

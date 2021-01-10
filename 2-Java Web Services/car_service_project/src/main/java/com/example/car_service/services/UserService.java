@@ -14,7 +14,8 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = this.userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
+
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
