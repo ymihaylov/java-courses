@@ -27,4 +27,10 @@ public class Car extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public String getFullName() {
+        return this.getCarManufacturer().getName() + " "
+                + this.getModel() + " "
+                + this.getRegistration();
+    }
 }

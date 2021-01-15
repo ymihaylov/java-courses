@@ -41,14 +41,9 @@ public class Appointment extends BaseEntity {
     private Car car;
 
     @ManyToOne
-    @JoinColumn(name = "car_service_company_id")
+    @JoinColumn(name = "repair_shop_id")
     private RepairShop repairShop;
 
     @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-        name = "appointments_services",
-        joinColumns = { @JoinColumn(name = "appointment_id") },
-        inverseJoinColumns = { @JoinColumn(name = "service_id") }
-    )
     Set<CarService> services = new HashSet<>();
 }

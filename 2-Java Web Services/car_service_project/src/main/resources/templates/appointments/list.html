@@ -6,38 +6,38 @@
 
 <div class="container">
     <div class="row mt-3">
-        <h3>My Cars</h3>
+        <h3 th:text="${car.getFullName()}+' -> Appointment History'"></h3>
     </div>
 
     <div class="row mt-4">
-        <a href="/my-cars/add-car" class="btn btn-success">Add New Car</a>
+        <div><a href="/my-cars" class="btn btn-link">< Back to My Cars List</a></div><br />
 
-        <div th:unless="${cars} and ${cars.size()}" class="ml-2 mt-1">There are no cars! Add your first car!</div>
+        <div th:unless="${appointments} and ${appointments.size()}" class="ml-2 mt-1">There are no history for this car yet!</div>
 
-        <table th:if="${cars.size()>0}" class="table table-hover mt-3">
+        <table th:if="${appointments.size()>0}" class="table table-hover mt-3">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Make</th>
-                    <th>Model</th>
-                    <th>Registration Number</th>
-                    <th>Year</th>
-                    <th colspan="4">Actions</th>
+                    <th>Date</th>
+                    <th>Repair Shop</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                    <th>Services</th>
                 </tr>
             </thead>
 
-            <tr th:each="car : ${cars}">
-                <td th:text="${car.id}"></td>
-                <td th:text="${car.carManufacturer.name}"></td>
-                <td th:text="${car.model}"></td>
-                <td th:text="${car.registration}"></td>
-                <td th:text="${car.year}"></td>
-
-                <td><a class="btn btn-info" th:href="@{'/cars/schedule-appointment/'+${car.id}}">Schedule Service Appointment</a></td>
-                <td><a class="btn btn-outline-warning" th:href="@{'/my-cars/edit/'+${car.id}}">Edit</a></td>
-                <td><button type="button" class="btn btn-outline-danger" data-th-href="@{'/my-cars/delete/'+${car.id}}" data-toggle="modal" data-target="#confirm-delete">Delete</button></td>
-
-                <td><a class="btn btn-link" th:href="@{'/my-cars/'+${car.id}+'/history'}">Show History</a></td>
+            <tr th:each="appointment : ${appointments}">
+                <td th:text="${appointment.id}"></td>
+                <td th:text="${appointment.date}"></td>
+                <td th:text="${appointment.repairShop.name}"></td>
+                <td th:text="${appointment.status}"></td>
+                <td th:text="${appointment.price}"></td>
+                <td>
+                    <ul>
+                        <li>Смяна на гуми</li>
+                        <li>Смяна на накладки</li>
+                    </ul>
+                </td>
             </tr>
         </table>
     </div>

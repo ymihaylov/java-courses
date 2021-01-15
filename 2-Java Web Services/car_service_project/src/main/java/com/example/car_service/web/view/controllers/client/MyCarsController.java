@@ -1,11 +1,12 @@
-package com.example.car_service.web.view.controllers;
+package com.example.car_service.web.view.controllers.client;
 
 import com.example.car_service.data.entity.Car;
-
+import com.example.car_service.data.entity.User;
+import com.example.car_service.services.AppointmentsService;
 import com.example.car_service.services.CarManufacturerService;
 import com.example.car_service.services.CarService;
+import com.example.car_service.services.UserService;
 import lombok.AllArgsConstructor;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,19 +16,23 @@ import javax.validation.Valid;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/cars")
-public class CarsController {
+@RequestMapping("/my-cars")
+//@PreAuthorize("hasAuthority('CLIENT')")
+public class MyCarsController {
     private final CarService carService;
+    private final UserService userService;
     private final CarManufacturerService carManufacturerService;
+    private final AppointmentsService appointmentsService;
 
     @GetMapping()
     public String getClientCars(Model model) {
-        model.addAttribute("cars", carService.getCars());
+        User user = userService.getCurrentLoggedUser();
+        model.addAttribute("cars", carService.getCarsByUser(user));
 
         return "/cars/list";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/add-car")
     public String showCreateCarForm(Model model) {
         model.addAttribute("car", new Car());
         model.addAttribute("carManufacturers", this.carManufacturerService.getCarManufactures());
@@ -38,12 +43,13 @@ public class CarsController {
     @PostMapping("/create")
     public String createCar(@Valid @ModelAttribute("car") Car car, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "cars/create";
+            return "create";
         }
 
+        car.setUser(userService.getCurrentLoggedUser());
         carService.create(car);
 
-        return "redirect:/cars";
+        return "redirect:/my-cars";
     }
 
     @GetMapping("/edit/{id}")
@@ -55,19 +61,30 @@ public class CarsController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateSchool(@PathVariable long id, @Valid @ModelAttribute("school") Car car, BindingResult bindingResult) {
+    public String UpdateCar(@PathVariable long id, @Valid @ModelAttribute("car") Car car, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/cars/edit";
         }
 
+        car.setUser(userService.getCurrentLoggedUser());
         carService.updateCar(id, car);
 
-        return "redirect:/cars";
+        return "redirect:/my-cars";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCar(@PathVariable int id) {
-        carService.deleteSchool(id);
-        return "redirect:/cars";
+        carService.deleteCar(id);
+        return "redirect:/my-cars";
+    }
+
+    @GetMapping("/{id}/history")
+    public String getCarHistory(Model model, @PathVariable int id) {
+        Car car = carService.getCar(id);
+
+        model.addAttribute("car", car);
+        model.addAttribute("appointments", appointmentsService.getAppointmentsByCar(car));
+
+        return "/appointments/list";
     }
 }
