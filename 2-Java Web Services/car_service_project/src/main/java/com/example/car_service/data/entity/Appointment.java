@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,15 +23,19 @@ import java.util.Set;
 @Table(name = "appointments")
 public class Appointment extends BaseEntity {
     @NotNull
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Future(message="The date has to be in the future!")
     private LocalDate date;
+
+    @NotNull
+    private String time;
 
     @Column
     private BigDecimal price;
 
     @Enumerated
     private AppointmentStatus status;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")

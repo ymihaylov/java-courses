@@ -6,6 +6,7 @@ import com.example.car_service.data.repository.AppointmentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Service
@@ -14,6 +15,10 @@ public class AppointmentsService {
     private final AppointmentRepository appointmentRepository;
 
     public List<Appointment> getAppointmentsByCar(Car car) {
-        return appointmentRepository.findAllByCarId(car.getId());
+        return appointmentRepository.findAllByCarIdOrderByDateDesc(car.getId());
+    }
+
+    public Appointment create(@Valid Appointment appointment) {
+        return this.appointmentRepository.save(appointment);
     }
 }

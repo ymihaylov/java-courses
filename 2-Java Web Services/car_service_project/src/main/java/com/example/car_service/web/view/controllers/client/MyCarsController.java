@@ -1,11 +1,10 @@
 package com.example.car_service.web.view.controllers.client;
 
+import com.example.car_service.data.entity.Appointment;
+import com.example.car_service.data.entity.AppointmentStatus;
 import com.example.car_service.data.entity.Car;
 import com.example.car_service.data.entity.User;
-import com.example.car_service.services.AppointmentsService;
-import com.example.car_service.services.CarManufacturerService;
-import com.example.car_service.services.CarService;
-import com.example.car_service.services.UserService;
+import com.example.car_service.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +22,8 @@ public class MyCarsController {
     private final UserService userService;
     private final CarManufacturerService carManufacturerService;
     private final AppointmentsService appointmentsService;
+    private final RepairShopService repairShopService;
+    private final CarServiceService carServiceService;
 
     @GetMapping()
     public String getClientCars(Model model) {
@@ -61,7 +62,7 @@ public class MyCarsController {
     }
 
     @PostMapping("/update/{id}")
-    public String UpdateCar(@PathVariable long id, @Valid @ModelAttribute("car") Car car, BindingResult bindingResult) {
+    public String updateCar(@PathVariable long id, @Valid @ModelAttribute("car") Car car, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/cars/edit";
         }
@@ -86,5 +87,34 @@ public class MyCarsController {
         model.addAttribute("appointments", appointmentsService.getAppointmentsByCar(car));
 
         return "/appointments/list";
+    }
+
+    @GetMapping("/{id}/schedule-appointment")
+    public String showScheduleAppointmentForm(Model model, @PathVariable int id) {
+        model.addAttribute("car", carService.getCar(id));
+        model.addAttribute("repairShops", repairShopService.getRepairShops());
+        model.addAttribute("appointment", new Appointment());
+        model.addAttribute("carServices", carServiceService.getServices());
+
+        return "/appointments/create";
+    }
+
+    @PostMapping("/{carId}/schedule-appointment")
+    public String createNewAppointment(
+        @Valid @ModelAttribute("appointment") Appointment appointment,
+        BindingResult bindingResult,
+        @PathVariable int carId
+    ) {
+        if (bindingResult.hasErrors()) {
+            return "/appointments/create";
+        }
+
+        appointment.setCar(carService.getCar(carId));
+        appointment.setStatus(AppointmentStatus.PENDING);
+        appointment.setUser(userService.getCurrentLoggedUser());
+
+        appointmentsService.create(appointment);
+
+        return "redirect:/my-cars";
     }
 }

@@ -17,23 +17,21 @@
         <table th:if="${cars.size()>0}" class="table table-hover mt-3">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Registration Number</th>
                     <th>Make</th>
                     <th>Model</th>
-                    <th>Registration Number</th>
                     <th>Year</th>
                     <th colspan="4">Actions</th>
                 </tr>
             </thead>
 
             <tr th:each="car : ${cars}">
-                <td th:text="${car.id}"></td>
+                <td th:text="${car.registration}"></td>
                 <td th:text="${car.carManufacturer.name}"></td>
                 <td th:text="${car.model}"></td>
-                <td th:text="${car.registration}"></td>
                 <td th:text="${car.year}"></td>
 
-                <td><a class="btn btn-info" th:href="@{'/cars/schedule-appointment/'+${car.id}}">Schedule Service Appointment</a></td>
+                <td><a class="btn btn-info" th:href="@{'/my-cars/'+${car.id}+'/schedule-appointment/'}">Schedule Service Appointment</a></td>
                 <td><a class="btn btn-outline-warning" th:href="@{'/my-cars/edit/'+${car.id}}">Edit</a></td>
                 <td><button type="button" class="btn btn-outline-danger" data-th-href="@{'/my-cars/delete/'+${car.id}}" data-toggle="modal" data-target="#confirm-delete">Delete</button></td>
 

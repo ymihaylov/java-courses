@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="row mt-3">
-        <h3 th:text="${car.getFullName()}+' -> Appointment History'"></h3>
+        <h3 th:text="${car.getFullName()}+' -> Appointments History'"></h3>
     </div>
 
     <div class="row mt-4">
@@ -17,27 +17,30 @@
         <table th:if="${appointments.size()>0}" class="table table-hover mt-3">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Date</th>
+                    <th>Time</th>
                     <th>Repair Shop</th>
                     <th>Status</th>
                     <th>Price</th>
                     <th>Services</th>
+                    <th colspan="2">Actions</th>
                 </tr>
             </thead>
 
             <tr th:each="appointment : ${appointments}">
-                <td th:text="${appointment.id}"></td>
                 <td th:text="${appointment.date}"></td>
+                <td th:text="${appointment.time}"></td>
                 <td th:text="${appointment.repairShop.name}"></td>
                 <td th:text="${appointment.status}"></td>
                 <td th:text="${appointment.price}"></td>
                 <td>
                     <ul>
-                        <li>Смяна на гуми</li>
-                        <li>Смяна на накладки</li>
+                        <li th:each="service : ${appointment.services}" th:text="${service.name}"></li>
                     </ul>
                 </td>
+
+                <td><a th:if="${appointment.status == T(com.example.car_service.data.entity.AppointmentStatus).PENDING}" class="btn btn-outline-warning" th:href="@{'/my-cars/edit-appointment/'+${appointment.id}}">Edit</a></td>
+                <td><a th:if="${appointment.status == T(com.example.car_service.data.entity.AppointmentStatus).PENDING}" class="btn btn-outline-danger" th:href="@{'/my-cars/edit-appointment/'+${appointment.id}}">Delete</a></td>
             </tr>
         </table>
     </div>
