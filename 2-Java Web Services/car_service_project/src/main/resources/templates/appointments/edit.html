@@ -8,18 +8,18 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col-md-7 mx-auto">
-            <h3 th:text="${car.getFullName()}+' -> Schedule Appointment'"></h3>
+            <h3 th:text="${appointment.car.getFullName()}+' -> Edit Appointment'"></h3>
         </div>
     </div>
 
     <div class="row mt-3">
         <div class="col-md-7 mx-auto">
-            <form action="#" th:action="@{/my-cars/{id}/schedule-appointment(id=${car.id})}" th:object="${appointment}" method="post">
+            <form action="#" th:action="@{/my-cars/appointments/{appointmentId}/edit(appointmentId=${appointment.id})}" th:object="${appointment}" method="post">
                 <div class="form-group">
                     <label for="repair-shop">Repair Shop</label>
                     <select class="form-control" th:field="${appointment.repairShop}" id="repair-shop">
                         <option value="">Select Repair Shop</option>
-                        <option th:each="repairShop: ${repairShops}" th:value="${repairShop.id}" th:text="${repairShop.name}"></option>
+                        <option th:each="repairShop: ${repairShops}" th:value="${repairShop.id}" th:text="${repairShop.name}" th:selected="${repairShop == appointment.repairShop}"></option>
                     </select>
                 </div>
 

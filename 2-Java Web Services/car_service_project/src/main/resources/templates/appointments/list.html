@@ -39,8 +39,8 @@
                     </ul>
                 </td>
 
-                <td><a th:if="${appointment.status == T(com.example.car_service.data.entity.AppointmentStatus).PENDING}" class="btn btn-outline-warning" th:href="@{'/my-cars/edit-appointment/'+${appointment.id}}">Edit</a></td>
-                <td><a th:if="${appointment.status == T(com.example.car_service.data.entity.AppointmentStatus).PENDING}" class="btn btn-outline-danger" th:href="@{'/my-cars/edit-appointment/'+${appointment.id}}">Delete</a></td>
+                <td><a th:if="${appointment.status == T(com.example.car_service.data.entity.AppointmentStatus).PENDING}" class="btn btn-outline-danger" th:href="@{'/my-cars/appointments/'+${appointment.id}+'/cancel'}">Cancel</a></td>
+                <td><a th:if="${appointment.status == T(com.example.car_service.data.entity.AppointmentStatus).PENDING}" class="btn btn-outline-warning" th:href="@{'/my-cars/appointments/'+${appointment.id}+'/edit'}">Edit</a></td>
             </tr>
         </table>
     </div>

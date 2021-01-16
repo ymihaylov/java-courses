@@ -5,12 +5,15 @@ import com.example.car_service.data.entity.AppointmentStatus;
 import com.example.car_service.data.entity.Car;
 import com.example.car_service.data.entity.User;
 import com.example.car_service.services.*;
+import com.example.car_service.web.view.model.UpdateAppointmentViewModel;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -24,6 +27,7 @@ public class MyCarsController {
     private final AppointmentsService appointmentsService;
     private final RepairShopService repairShopService;
     private final CarServiceService carServiceService;
+    private final ModelMapper modelMapper;
 
     @GetMapping()
     public String getClientCars(Model model) {
@@ -116,5 +120,45 @@ public class MyCarsController {
         appointmentsService.create(appointment);
 
         return "redirect:/my-cars";
+    }
+
+    @GetMapping("/appointments/{appointmentId}/cancel")
+    public String cancelAppointment(Model model, @PathVariable int appointmentId, HttpServletRequest request) {
+        Appointment appointment = appointmentsService.getAppointment(appointmentId);
+        appointmentsService.cancelAppointment(appointment);
+
+        return "redirect:"+request.getHeader("Referer");
+    }
+
+    @GetMapping("/appointments/{appointmentId}/edit")
+    public String showEditAppointmentForm(Model model, @PathVariable int appointmentId, HttpServletRequest request) {
+        model.addAttribute("repairShops", repairShopService.getRepairShops());
+        model.addAttribute("appointment", appointmentsService.getAppointment(appointmentId));
+        model.addAttribute("carServices", carServiceService.getServices());
+
+        return "/appointments/edit";
+    }
+
+    @PostMapping("/appointments/{appointmentId}/edit")
+    public String updateAppointment(
+        Model model,
+        @PathVariable long appointmentId,
+        @Valid @ModelAttribute("appointment") Appointment appointmentViewModel,
+        BindingResult bindingResult
+    ) {
+        Appointment appointment = appointmentsService.getAppointment(appointmentId);
+        appointment.setRepairShop(appointmentViewModel.getRepairShop());
+        appointment.setDate(appointmentViewModel.getDate());
+        appointment.setTime(appointmentViewModel.getTime());
+        appointment.setServices(appointmentViewModel.getServices());
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("appointment", appointment);
+            return "/appointments/edit";
+        }
+
+        appointmentsService.updateAppointment(appointmentId, appointment);
+
+        return "redirect:/my-cars/"+appointment.getCar().getId()+"/history";
     }
 }

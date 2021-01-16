@@ -1,17 +1,19 @@
-package com.example.car_service.data.entity;
+package com.example.car_service.web.view.model;
 
+import com.example.car_service.data.entity.CarService;
+import com.example.car_service.data.entity.RepairShop;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,32 +22,14 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @ToString
-@Entity
-@DynamicUpdate
-@Table(name = "appointments")
-public class Appointment extends BaseEntity {
+public class UpdateAppointmentViewModel {
     @NotNull
     @DateTimeFormat(pattern="yyyy-MM-dd")
-//    @Future(message="The date has to be in the future!")
+    @Future(message="The date has to be in the future!")
     private LocalDate date;
 
     @NotNull
     private String time;
-
-    @Column
-    private BigDecimal price;
-
-    @Enumerated
-    private AppointmentStatus status;
-
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "car_id")
-    private Car car;
 
     @ManyToOne
     @JoinColumn(name = "repair_shop_id")
