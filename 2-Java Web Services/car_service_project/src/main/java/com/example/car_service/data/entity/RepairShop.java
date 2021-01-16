@@ -20,6 +20,9 @@ import java.util.Set;
 public class RepairShop extends BaseEntity {
     private String name;
 
+    @OneToMany
+    private Set<User> employees;
+
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "repair_shops_manufacturers",

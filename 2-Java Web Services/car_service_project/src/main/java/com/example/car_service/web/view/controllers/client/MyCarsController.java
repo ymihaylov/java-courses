@@ -5,9 +5,8 @@ import com.example.car_service.data.entity.AppointmentStatus;
 import com.example.car_service.data.entity.Car;
 import com.example.car_service.data.entity.User;
 import com.example.car_service.services.*;
-import com.example.car_service.web.view.model.UpdateAppointmentViewModel;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +18,7 @@ import javax.validation.Valid;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/my-cars")
-//@PreAuthorize("hasAuthority('CLIENT')")
+@PreAuthorize("hasAuthority('CLIENT')")
 public class MyCarsController {
     private final CarService carService;
     private final UserService userService;
@@ -27,7 +26,6 @@ public class MyCarsController {
     private final AppointmentsService appointmentsService;
     private final RepairShopService repairShopService;
     private final CarServiceService carServiceService;
-    private final ModelMapper modelMapper;
 
     @GetMapping()
     public String getClientCars(Model model) {

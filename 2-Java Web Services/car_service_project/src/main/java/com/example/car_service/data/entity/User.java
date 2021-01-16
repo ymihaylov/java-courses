@@ -38,6 +38,8 @@ public class User extends BaseEntity implements UserDetails {
     @Column(name = "full_name")
     private String fullName;
 
+    @ManyToOne
+    private RepairShop repairShop;
 //    @OneToMany
 //    private Set<Car> cars;
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+
+<div class="container">
+    <div class="row mt-3">
+        <h3 th:text="${repairShop.getName()}+' -> Pending Appointments'"></h3>
+    </div>
+
+    <div class="row mt-4">
+        <div th:unless="${appointments} and ${appointments.size()}" class="ml-2 mt-1">There are no pending appointments!</div>
+
+        <table th:if="${appointments.size()>0}" class="table table-hover mt-3">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Client</th>
+                    <th>Car Make</th>
+                    <th>Car Model</th>
+                    <th>Services</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+
+            <tr th:each="appointment : ${appointments}">
+                <td th:text="${appointment.date}"></td>
+                <td th:text="${appointment.time}"></td>
+                <td th:text="${appointment.user.fullName}"></td>
+                <td th:text="${appointment.car.carManufacturer.name}"></td>
+                <td th:text="${appointment.car.model}"></td>
+                <td>
+                    <ul>
+                        <li th:each="service : ${appointment.services}" th:text="${service.name}"></li>
+                    </ul>
+                </td>
+
+                <td><a class="btn btn-outline-warning" th:href="@{'/repair-shop/appointments/'+${appointment.id}+'/edit'}">Edit</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

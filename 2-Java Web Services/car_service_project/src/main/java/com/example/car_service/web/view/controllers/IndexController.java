@@ -20,7 +20,7 @@ public class IndexController {
         if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("CLIENT"))) {
             return "redirect:/my-cars";
         } else if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("CAR_SHOP_EMPLOYEE"))) {
-            return "redirect:/pending-appointments";
+            return "redirect:/repair-shop/pending-appointments";
         }
 
         return "/hello-secured";

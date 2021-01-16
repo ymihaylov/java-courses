@@ -12,7 +12,7 @@
     <div class="row mt-4">
         <div><a href="/my-cars" class="btn btn-link">< Back to My Cars List</a></div><br />
 
-        <div th:unless="${appointments} and ${appointments.size()}" class="ml-2 mt-1">There are no history for this car yet!</div>
+        <div th:unless="${appointments} and ${appointments.size()}" class="ml-2 mt-1">There are no appointments history for this car yet!</div>
 
         <table th:if="${appointments.size()>0}" class="table table-hover mt-3">
             <thead>
@@ -45,34 +45,6 @@
         </table>
     </div>
 </div>
-
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-label" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Delete Car</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <p>Are you sure you want to delete the car?</p>
-            </div>
-
-            <div class="modal-footer">
-                <a href="#" class="btn btn-danger btn-ok">Delete</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    $('#confirm-delete').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).attr('href'));
-    });
-</script>
 
 <footer th:replace="fragments :: footer"></footer>
 </body>
