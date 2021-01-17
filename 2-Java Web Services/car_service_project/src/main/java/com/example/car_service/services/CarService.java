@@ -1,6 +1,7 @@
 package com.example.car_service.services;
 
 import com.example.car_service.data.entity.Car;
+import com.example.car_service.data.entity.RepairShop;
 import com.example.car_service.data.entity.User;
 import com.example.car_service.data.repository.CarRepository;
 import lombok.AllArgsConstructor;
@@ -42,5 +43,9 @@ public class CarService {
 
     public void deleteCar(long id) {
         carRepository.deleteById(id);
+    }
+
+    public List<Car> getCarsServicedByRepairShop(RepairShop repairShop) {
+        return carRepository.peshoGosho(repairShop);
     }
 }

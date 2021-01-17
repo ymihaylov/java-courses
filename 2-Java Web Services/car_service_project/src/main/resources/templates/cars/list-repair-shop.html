@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+
+<div class="container">
+    <div class="row mt-3">
+        <h3 th:text="${repairShop.getName()}+' -> Cars'"></h3>
+    </div>
+
+    <div class="row mt-3">
+        <form method="GET" action="/repair-shop/cars">
+            <div class="form-row">
+                <div class="col-4">
+                    <input type="text" class="form-control" placeholder="Registration Number">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Year">
+                </div>
+                <div class="col">
+                    <select class="form-control" id="carManufacturerFilter">
+                        <option value="">Select Make</option>
+                        <option th:each="carManufacturer: ${carManufacturers}" th:value="${carManufacturer.id}" th:text="${carManufacturer.name}"></option>
+                    </select>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-info">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row mt-4">
+        <div th:unless="${cars} and ${cars.size()}" class="ml-2 mt-1">There are no cars!</div>
+
+        <table th:if="${cars.size()>0}" class="table table-hover mt-3">
+            <thead>
+            <tr>
+                <th>Client</th>
+                <th>Registration Number</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th colspan="1">Actions</th>
+            </tr>
+            </thead>
+
+            <tr th:each="car : ${cars}">
+                <td th:text="${car.user.fullName}"></td>
+                <td th:text="${car.registration}"></td>
+                <td th:text="${car.carManufacturer.name}"></td>
+                <td th:text="${car.model}"></td>
+                <td th:text="${car.year}"></td>
+
+                <td><a class="btn btn-link" th:href="@{'/my-cars/'+${car.id}+'/history'}">Show History</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Car</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p>Are you sure you want to delete the car?</p>
+            </div>
+
+            <div class="modal-footer">
+                <a href="#" class="btn btn-danger btn-ok">Delete</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).attr('href'));
+    });
+</script>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

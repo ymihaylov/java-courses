@@ -1,8 +1,8 @@
 package com.example.car_service.web.view.controllers.employee;
 
 import com.example.car_service.data.entity.Appointment;
+import com.example.car_service.data.entity.Car;
 import com.example.car_service.data.entity.RepairShop;
-import com.example.car_service.data.entity.User;
 import com.example.car_service.services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -68,5 +69,29 @@ public class EmployeeController {
         appointmentsService.updateAppointment(appointmentId, appointment);
 
         return "redirect:/repair-shop/pending-appointments";
+    }
+
+    @GetMapping("/cars")
+    public String listCarsServicedByRepairShop(Model model, HttpServletRequest request) {
+        RepairShop repairShop = repairShopService.getCurrentRepairShopByLoggedUser();
+        List<Car> cars = carService.getCarsServicedByRepairShop(repairShop);
+
+        model.addAttribute("carManufacturers", this.carManufacturerService.getCarManufactures());
+        model.addAttribute("repairShop", repairShop);
+        model.addAttribute("cars", cars);
+
+        return "/cars/list-repair-shop";
+    }
+
+    @GetMapping("/cars/{carId}")
+    public String listCarsServicedByRepairShop(Model model, @PathVariable long carId) {
+        RepairShop repairShop = repairShopService.getCurrentRepairShopByLoggedUser();
+        List<Car> cars = carService.getCarsServicedByRepairShop(repairShop);
+
+        model.addAttribute("carManufacturers", this.carManufacturerService.getCarManufactures());
+        model.addAttribute("repairShop", repairShop);
+        model.addAttribute("cars", cars);
+
+        return "/cars/list-repair-shop";
     }
 }
