@@ -1,0 +1,34 @@
+Diagnosis List
+
+#AB12345# - Crohn's Disease
+1/2,193	1	[K: 2003]
+#AB12346# - Gastroschisis
+1/2,229	1	[P: 2010]
+#AB12347# - Patent Ductus Arteriosus
+1/2,329	1	[B: 2004]
+#AB12348# - Atrial Septal Defect
+1/2,329	1	[B: 2004]
+#AB12349# - All Tandem Mass-Screened Conditions
+1/2,400	1	[S: 2003]
+#AB12340# - Sickle Cell Disease
+1/2,699	0.9	[H: 2010]
+#AB12351# - Coarctation of the Aorta
+1/2,717	0.9	[B: 2004]
+#AB12352# - Pulmonary Valve Stenosis
+1/2,717	0.9	[B: 2004]
+#AB12353# - Spinal Cord Injury
+1/2,861	0.9	[N: 2005]
+#AB12354# - Reduction Defects, upper limbs
+1/2,869	0.9	[P: 2010]
+#AB12355# - Traumatic Brain Injury with Persistent Disability
+1/3,190	0.8	[Z: 2008]
+#AB12356# - d-Transposition of the Great Arteries
+1/3,333	0.8	[P: 2010]
+#AB12357# - Growth Hormone Deficiency
+1/3,480	0.7	[L: 1994]
+#AB12358# - Cystic Fibrosis
+1/3,500	0.7	[C: 2004]
+#AB12359# - Childhood Absence Epilepsy
+1/3,571	0.7	[P: 2008]
+#AB12360# - Aortic Valve Stenosis
+1/3,622	0.7	[B: 2004]
