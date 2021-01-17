@@ -83,7 +83,7 @@ public class EmployeeController {
         return "/cars/list-repair-shop";
     }
 
-    @GetMapping("/cars/{carId}")
+    @GetMapping("/repair-shop/{carId}/history")
     public String listCarsServicedByRepairShop(Model model, @PathVariable long carId) {
         RepairShop repairShop = repairShopService.getCurrentRepairShopByLoggedUser();
         List<Car> cars = carService.getCarsServicedByRepairShop(repairShop);

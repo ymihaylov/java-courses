@@ -78,7 +78,7 @@ public class Main {
         buildingsPrices.put(building10, 400000.0);
 
         System.out.println("--------------------------- Task 2.a ---------------------------");
-        buildingsPrices.entrySet().stream().filter(entry -> entry.getValue() > 100000).forEach(System.out::println);
+        buildingsPrices.entrySet().stream().filter(entry -> entry.getValue() > 100_000).forEach(System.out::println);
 
         System.out.println("--------------------------- Task 2.b ---------------------------");
         double average = buildingsPrices.entrySet().stream().mapToDouble(entry -> entry.getValue()).average().orElse(0);
@@ -91,5 +91,12 @@ public class Main {
                 .collect(Collectors.toList());
 
         pricesLessThanAverage.forEach(System.out::println);
+
+        System.out.println("--------------------------- Task 2.b Variant 2 ---------------------------");
+        double averagePrice = buildingsPrices.values().stream().reduce(0., (a, b) -> a + b) / buildingsPrices.size();
+        System.out.println("Average building price: " + averagePrice);
+        List<Double> pricesLessThanAverage2 = buildingsPrices.values()
+                .stream().filter(price -> price < averagePrice).collect(Collectors.toList());
+        pricesLessThanAverage2.stream().forEach(System.out::println);
     }
 }
