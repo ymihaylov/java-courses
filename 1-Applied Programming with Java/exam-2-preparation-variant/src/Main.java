@@ -78,8 +78,7 @@ public class Main {
 
         // Task 3
         {
-
-
+            // Patern is (#\w*# - )([\w ]*)
         }
     }
 }
