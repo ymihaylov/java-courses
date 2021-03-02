@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CarTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-18T06:49:24" hostname="Yavors-MacBook-Air.local" time="0.052">
+  <properties/>
+  <testcase name="setPriceThrowsAnException()" classname="CarTest" time="0.052"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<header th:replace="fragments :: header"></header>
+
+<div class="container">
+    <div class="row mt-3">
+        <h3 th:text="${car.getFullName()}+' -> Appointments History'"></h3>
+    </div>
+
+    <div class="row mt-3">
+        <form method="GET" action="#">
+            <div class="form-row">
+                <div class="col-8">
+                    <select class="form-control" id="carManufacturerFilter">
+                        <option value="">Select Service</option>
+                        <option th:each="carService: ${carServices}" th:value="${carService.id}" th:text="${carService.name}"></option>
+                    </select>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-info">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row mt-4">
+        <div th:unless="${appointments} and ${appointments.size()}" class="ml-2 mt-1">There are no appointments history for this car yet!</div>
+
+        <table th:if="${appointments.size()>0}" class="table table-hover mt-3">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Repair Shop</th>
+                <th>Status</th>
+                <th>Price</th>
+                <th>Services</th>
+            </tr>
+            </thead>
+
+            <tr th:each="appointment : ${appointments}">
+                <td th:text="${appointment.date}"></td>
+                <td th:text="${appointment.time}"></td>
+                <td th:text="${appointment.repairShop.name}"></td>
+                <td th:text="${appointment.status}"></td>
+                <td th:text="${appointment.price}"></td>
+                <td>
+                    <ul>
+                        <li th:each="service : ${appointment.services}" th:text="${service.name}"></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

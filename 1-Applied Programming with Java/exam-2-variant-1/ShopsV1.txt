@@ -1,0 +1,25 @@
+Shops Working Days and Working Hours
+
+Shop 1. Sofia, Mladost 3, Working days: Mon - Sat, Working Hours: 10:00 AM to 7:00 PM
+
+Shop 2. Sofia, Ovcha Kupel 1, Working days: Monday - Sunday, Working Hours: 9:00 AM to 7:00 PM
+
+Shop 3. Sofia, Geo Milev, Working days: Mon - Fri, Working Hours: 8:30 to 18:00
+
+Shop 4. Plovdiv, Hristo Botev 51, Working days: Mon - Sat, Working Hours: 8:30 AM to 6:00 PM
+
+Shop 5. Varna, Ivan Asen 4a, Working days: Monday - Saturday, Working Hours: 9:00 to 18:30
+
+Shop 6. Burgas, Kraybrejna 11, Working days: Mon - Sat, Working Hours: 8:00 AM to 6:00 PM
+
+Shop 7. Ruse, Petar Beron 7b, Working days: Mon - Sunday, Working Hours: 9:00 AM to 7:30 PM
+
+Shop 8. Stara Zagora, III Mart 7, Working days: Mon - Sun, Working Hours: 9:00 to 19:00
+
+Shop 9. Sliven, Pencho Slavejkov 31, Working days: Mon - Sat, Working Hours: 8:00 AM to 7:00 PM
+
+Shop 10. Vidin, Peyo Yavorov 1, Working days: Mon - Friday, Working Hours: 8:30 to 17:30
+
+Shop 11. Varna, Ivan Vazov 6, Working days: Monday - Saturday, Working Hours: 10:00 AM to 7:00 PM
+
+Contact Us on https://shops.com

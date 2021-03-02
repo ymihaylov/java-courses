@@ -21,6 +21,7 @@
                     <th>Car Make</th>
                     <th>Car Model</th>
                     <th>Services</th>
+                    <th>Status</th>
                     <th colspan="2">Actions</th>
                 </tr>
             </thead>
@@ -36,7 +37,7 @@
                         <li th:each="service : ${appointment.services}" th:text="${service.name}"></li>
                     </ul>
                 </td>
-
+                <td th:text="${appointment.status}"></td>
                 <td><a class="btn btn-outline-warning" th:href="@{'/repair-shop/appointments/'+${appointment.id}+'/edit'}">Edit</a></td>
             </tr>
         </table>

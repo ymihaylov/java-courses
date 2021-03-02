@@ -47,6 +47,10 @@ public class AppointmentsService {
         return appointmentRepository.findAllByStatusOrderByDateAsc(status);
     }
 
+    public List<Appointment> getAppointmentsByRepairShop(RepairShop repairShop) {
+        return appointmentRepository.findAllByRepairShopOrderByDateDesc(repairShop);
+    }
+
     public List<Appointment> getPendingAppointmentsByRepairShop(RepairShop repairShop) {
         return getAppointmentsByStatus(AppointmentStatus.PENDING)
                 .stream()

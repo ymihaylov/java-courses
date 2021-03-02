@@ -28,10 +28,20 @@ public class EmployeeController {
     private final CarServiceService carServiceService;
 
     @GetMapping("/pending-appointments")
-    public String getClientCars(Model model) {
+    public String getPendingAppointments(Model model) {
         RepairShop currentRepairShop = repairShopService.getCurrentRepairShopByLoggedUser();
 
         model.addAttribute("appointments", appointmentsService.getPendingAppointmentsByRepairShop(currentRepairShop));
+        model.addAttribute("repairShop", currentRepairShop);
+
+        return "/appointments/list-service-pending";
+    }
+
+    @GetMapping("/appointments")
+    public String getAppointments(Model model) {
+        RepairShop currentRepairShop = repairShopService.getCurrentRepairShopByLoggedUser();
+
+        model.addAttribute("appointments", appointmentsService.getAppointmentsByRepairShop(currentRepairShop));
         model.addAttribute("repairShop", currentRepairShop);
 
         return "/appointments/list-service-pending";
@@ -83,15 +93,14 @@ public class EmployeeController {
         return "/cars/list-repair-shop";
     }
 
-    @GetMapping("/repair-shop/{carId}/history")
-    public String listCarsServicedByRepairShop(Model model, @PathVariable long carId) {
-        RepairShop repairShop = repairShopService.getCurrentRepairShopByLoggedUser();
-        List<Car> cars = carService.getCarsServicedByRepairShop(repairShop);
+    @GetMapping("/car/{carId}/history")
+    public String getCarHistory(Model model, @PathVariable long carId) {
+        Car car = carService.getCar(carId);
 
-        model.addAttribute("carManufacturers", this.carManufacturerService.getCarManufactures());
-        model.addAttribute("repairShop", repairShop);
-        model.addAttribute("cars", cars);
+        model.addAttribute("carServices", this.carServiceService.getServices());
+        model.addAttribute("car", car);
+        model.addAttribute("appointments", appointmentsService.getAppointmentsByCar(car));
 
-        return "/cars/list-repair-shop";
+        return "/appointments/list-car-history-repair-shop";
     }
 }

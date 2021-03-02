@@ -1,0 +1,76 @@
+---------------------------- Task 1.1 ----------------------------
+Car{brand='Pegeout', color=RED, price=52000}
+Car{brand='Pegeout', color=RED, price=50000}
+Car{brand='Pegeout', color=RED, price=33000}
+Car{brand='Mazda', color=GREEN, price=52000}
+Car{brand='Mazda', color=GREEN, price=25000}
+Car{brand='Mercedes', color=BLUE, price=50000}
+Car{brand='Mercedes', color=BLUE, price=40000}
+Car{brand='Mercedes', color=BLUE, price=30000}
+---------------------------- Task 1.2 ----------------------------
+Car{brand='Mazda', color=GREEN, price=52000}
+Car{brand='Mercedes', color=BLUE, price=50000}
+---------------------------- Task 1.3 ----------------------------
+6
+---------------------------- Task 1.4 ----------------------------
+Car{brand='Mazda', color=GREEN, price=52000}
+Car{brand='Pegeout', color=RED, price=52000}
+---------------------------- Task 1.5 ----------------------------
+Car{brand='Pegeout', color=RED, price=50000}=2021-01-09
+Car{brand='Mercedes', color=BLUE, price=50000}=2021-01-08
+---------------------------- Task 1.6 ----------------------------
+Car{brand='Pegeout', color=RED, price=52000}
+Car{brand='Pegeout', color=RED, price=50000}
+Car{brand='Mercedes', color=BLUE, price=50000}
+Car{brand='Mercedes', color=BLUE, price=40000}
+Car{brand='Mercedes', color=BLUE, price=30000}
+---------------------------- Task 2 ----------------------------
+---------------------------- Task 3 ----------------------------
+10:00 AM to 7:00 PM
+9:00 AM to 7:00 PM
+8:30 to 18:00
+8:30 AM to 6:00 PM
+9:00 to 18:30
+8:00 AM to 6:00 PM
+9:00 AM to 7:30 PM
+9:00 to 19:00
+8:00 AM to 7:00 PM
+8:30 to 17:30
+10:00 AM to 7:00 PM
+---------------------------- Task 4 ----------------------------
+Mazda check 1
+Mazda check 2
+Mazda check 3
+Mazda check 4
+Mazda check 5
+Mazda check 6
+Mazda check 7
+Mazda check 8
+Mazda check 9
+Pegeout check 1
+Pegeout check 2
+Pegeout check 3
+Pegeout check 4
+Pegeout check 5
+Pegeout check 6
+Pegeout check 7
+Pegeout check 8
+Pegeout check 9
+Pegeout check 1
+Pegeout check 2
+Mercedes check 1
+Pegeout check 3
+Mercedes check 2
+Pegeout check 4
+Mercedes check 3
+Pegeout check 5
+Mercedes check 4
+Pegeout check 6
+Pegeout check 7
+Pegeout check 8
+Pegeout check 9
+Mercedes check 5
+Mercedes check 6
+Mercedes check 7
+Mercedes check 8
+Mercedes check 9

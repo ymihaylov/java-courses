@@ -26,18 +26,22 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     <!--- Clients --->
-                    <li sec:authorize="hasAuthority('CLIENT')" class="nav-item active">
+                    <li sec:authorize="hasAuthority('CLIENT')" class="nav-item" th:classappend="${(#httpServletRequest.requestURL.toString().contains('my-cars')) ? 'active' : ''}">
                         <a class="nav-link" href="/my-cars">My Cars
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
 
                     <!--- Car Shop Employees -->
-                    <li sec:authorize="hasAuthority('CAR_SHOP_EMPLOYEE') || hasAuthority('CAR_SHOP_ADMIN')" class="nav-item">
-                        <a class="nav-link" href="/repair-shop/pending-appointments">Pending Appointments</a>
+                    <li sec:authorize="hasAuthority('CAR_SHOP_EMPLOYEE') || hasAuthority('CAR_SHOP_ADMIN')" class="nav-item" th:classappend="${(#httpServletRequest.requestURL.toString().contains('pending-appointments')) ? 'active' : ''}">
+                        <a class="nav-link" href="/repair-shop/pending-appointments" >Pending Appointments</a>
                     </li>
 
-                    <li sec:authorize="hasAuthority('CAR_SHOP_EMPLOYEE') || hasAuthority('CAR_SHOP_ADMIN')" class="nav-item">
+                    <li sec:authorize="hasAuthority('CAR_SHOP_EMPLOYEE') || hasAuthority('CAR_SHOP_ADMIN')" class="nav-item" th:classappend="${(#httpServletRequest.requestURL.toString().contains('/repair-shop/appointments')) ? 'active' : ''}">
+                        <a class="nav-link" href="/repair-shop/appointments">All Appointments</a>
+                    </li>
+
+                    <li sec:authorize="hasAuthority('CAR_SHOP_EMPLOYEE') || hasAuthority('CAR_SHOP_ADMIN')" class="nav-item" th:classappend="${(#httpServletRequest.requestURL.toString().contains('/repair-shop/cars')) ? 'active' : ''}">
                         <a class="nav-link" href="/repair-shop/cars">Cars</a>
                     </li>
 

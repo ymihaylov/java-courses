@@ -26,7 +26,7 @@ import java.util.Set;
 public class Appointment extends BaseEntity {
     @NotNull
     @DateTimeFormat(pattern="yyyy-MM-dd")
-//    @Future(message="The date has to be in the future!")
+    @Future(message="The date has to be in the future!")
     private LocalDate date;
 
     @NotNull
@@ -34,10 +34,9 @@ public class Appointment extends BaseEntity {
 
     @Column
     private BigDecimal price;
-
+ 
     @Enumerated
     private AppointmentStatus status;
-
 
     @ManyToOne
     @JoinColumn(name = "user_id")
